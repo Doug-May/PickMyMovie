@@ -5,7 +5,18 @@ import router from "./router";
 import store from "./store";
 
 Vue.config.productionTip = false;
-Vue.use(Vuetify);
+
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#d0d0d0',
+    secondary: '#ffa660',
+    accent: '#c0c0c0',
+    error: "#a04b4b",
+    info: '#d0d0d0',
+    success: '#d0d0d0',
+    warning: '#d0d0d0'
+  }
+});
 
 new Vue({
   router,

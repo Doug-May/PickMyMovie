@@ -4,27 +4,37 @@
       v-if="this.errors && this.errors.email"   
       v-model="email"
       label="E-mail"
+      color="#a04b4b"
+      outline
       required
       error
     ></v-text-field>
     <v-text-field
       v-model="email"
+      outline
+      color="secondary"
       label="E-mail"
       required
     ></v-text-field>
    <v-text-field
       v-if="this.errors && this.errors.password"
       v-model="password"
+      outline
       label="Password"
       required
       error
     ></v-text-field>
     <v-text-field
       v-model="password"
+      color="secondary"
+      outline
       label="Password"
       required
     ></v-text-field>
     <v-btn
+      block="true"
+      id="submitButton"
+      color="secondary"
       @click="login"
     >
     submit
@@ -66,12 +76,16 @@ export default {
 <style scoped>
 
 .loginBox{
-  margin: 0 12vh;
-  background: rgba(245, 245, 245, 0.2);
-  padding: 40px;
+  background-color: #f4f4f4;
+  padding: 30px;
   border-radius: 10px;
 }
 
+#submitButton{
+  margin: 0 auto;
+  width: 45%;
+  color: black;
+}
 
 
 

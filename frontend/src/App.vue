@@ -25,7 +25,7 @@ export default {
 #app {
   background-color: #353331;
   color: #b0b0b0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Bai Jamjuree", sans-serif;
 }
 h1 {
   text-transform: uppercase;
@@ -38,6 +38,7 @@ p {
   letter-spacing: 1px;
   font-size: 16px;
 }
+
 .router-anim-enter-active {
   animation: coming 700ms;
   opacity: 0;
