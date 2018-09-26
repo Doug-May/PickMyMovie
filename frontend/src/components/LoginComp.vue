@@ -1,7 +1,7 @@
 <template>
-<v-form ref="form" lazy-validation>
+<v-form ref="form" lazy-validation class="loginBox">
     <v-text-field
-      v-if="this.errors && this.errors.email"
+      v-if="this.errors && this.errors.email"   
       v-model="email"
       label="E-mail"
       required
@@ -64,4 +64,15 @@ export default {
 </script>
 
 <style scoped>
+
+.loginBox{
+  margin: 0 12vh;
+  background: rgba(245, 245, 245, 0.2);
+  padding: 40px;
+  border-radius: 10px;
+}
+
+
+
+
 </style>
