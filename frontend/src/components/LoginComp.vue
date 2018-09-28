@@ -7,9 +7,11 @@
       color="#a04b4b"
       outline
       required
+      :rules="[() => this.errors.email]"
       error
     ></v-text-field>
     <v-text-field
+      v-else
       v-model="email"
       outline
       color="secondary"
@@ -22,17 +24,24 @@
       outline
       label="Password"
       required
+      :rules="[() => this.errors.password]"
       error
+      type="show1 ? 'text' : 'password'"
+      :append-icon="show1 ? 'visibility' : 'visibility_off'"
     ></v-text-field>
     <v-text-field
+      v-else
       v-model="password"
       color="secondary"
       outline
       label="Password"
       required
+      :type="show1 ? 'text' : 'password'"
+      :append-icon="show1 ? 'visibility' : 'visibility_off'"
+      @click:append="show1 = !show1"
     ></v-text-field>
     <v-btn
-      block="true"
+      block
       id="submitButton"
       color="secondary"
       @click="login"
@@ -52,7 +61,8 @@ export default {
     return {
       password: "",
       email: "",
-      errors: null
+      errors: {},
+      show1: false
     };
   },
   methods: {
@@ -62,11 +72,16 @@ export default {
           email: this.email,
           password: this.password
         })
-        .then(function(response) {
-          console.log(response);
+        .then(response => {
+          alert(response);
+          //TODO
+          // log the user in and update the store variables
+          this.password = "";
+          this.email = "";
         })
-        .catch(function(error) {
-          console.log(error);
+        .catch(error => {
+          this.errors = error.response.data;
+          this.password = "";
         });
     }
   }
@@ -74,19 +89,15 @@ export default {
 </script>
 
 <style scoped>
-
-.loginBox{
+.loginBox {
   background-color: #f4f4f4;
   padding: 30px;
   border-radius: 10px;
 }
 
-#submitButton{
+#submitButton {
   margin: 0 auto;
   width: 45%;
   color: black;
 }
-
-
-
 </style>
