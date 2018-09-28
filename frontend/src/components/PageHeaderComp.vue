@@ -53,8 +53,10 @@ export default {
       this.$router.push("/login");
     },
     logout() {
-      this.$router.push("/login");
-      this.$store.commit("logOut");
+      setTimeout(() => {
+        this.$router.push("/login");
+        this.$store.dispatch("logout");
+      }, 150);
     }
   }
 };

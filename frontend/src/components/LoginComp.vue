@@ -79,7 +79,7 @@ export default {
           password: this.password
         })
         .then(response => {
-          this.$store.commit("logIn", response.data);
+          this.$store.dispatch("login", response.data);
           this.$router.push("/");
           this.password = "";
           this.email = "";
