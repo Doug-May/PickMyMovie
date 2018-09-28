@@ -1,6 +1,7 @@
 <template>
 <v-form ref="form" lazy-validation class="loginBox">
     <v-text-field
+      @keyup.enter="login"
       v-if="this.errorObj && this.errorObj.email"   
       v-model="email"
       label="E-mail"
@@ -11,6 +12,7 @@
       error
     ></v-text-field>
     <v-text-field
+      @keyup.enter="login"
       v-else
       v-model="email"
       outline
@@ -19,6 +21,7 @@
       required
     ></v-text-field>
    <v-text-field
+      @keyup.enter="login"
       v-if="this.errorObj && this.errorObj.password"
       v-model="password"
       outline
@@ -31,6 +34,7 @@
       @click:append="show1 = !show1"
     ></v-text-field>
     <v-text-field
+      @keyup.enter="login"
       v-else
       v-model="password"
       color="secondary"
@@ -75,9 +79,8 @@ export default {
           password: this.password
         })
         .then(response => {
-          alert(response.data.name);
-          //TODO
-          // log the user in and update the store variables
+          this.$store.commit("logIn", response.data);
+          this.$router.push("/");
           this.password = "";
           this.email = "";
         })

@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h1>Home</h1>
+        <h1 v-if="$store.state.isLoggedIn">Welcome {{ $store.state.userName }}!</h1>
+        <h1 v-else>Welcome</h1>
     </div>
 </template>
 

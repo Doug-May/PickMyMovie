@@ -40,30 +40,21 @@ export default {
     return {};
   },
   methods: {
-    goHome: function() {
-      this.$router.push({ name: "home" });
+    goHome() {
+      this.$router.push("/");
     },
-    goToAbout: function() {
-      this.$router.push({ name: "about" });
+    goToAbout() {
+      this.$router.push("/about");
     },
-    goToMyMovies: function() {
-      this.$router.push({ name: "mymovies" });
+    goToMyMovies() {
+      this.$router.push("/mymovies");
     },
-    loginHelper: function() {
-      this.$store.state.isLoggedIn = !this.$store.state.isLoggedIn;
-      this.$router.push({ name: "mymovies" });
-      alert("You Logged In!");
+    login() {
+      this.$router.push("/login");
     },
-    login: function() {
-      setTimeout(this.loginHelper, 170);
-    },
-    logoutHelper: function() {
-      this.$store.state.isLoggedIn = !this.$store.state.isLoggedIn;
-      this.$router.push({ name: "login" });
-      alert("You Logged Out!");
-    },
-    logout: function() {
-      setTimeout(this.logoutHelper, 170);
+    logout() {
+      this.$router.push("/login");
+      this.$store.commit("logOut");
     }
   }
 };

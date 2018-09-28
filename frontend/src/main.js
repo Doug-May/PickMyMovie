@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Vuetify from 'vuetify';
+import Vuetify from "vuetify";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -8,13 +8,13 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#d0d0d0',
-    secondary: '#ffa660',
-    accent: '#c0c0c0',
+    primary: "#d0d0d0",
+    secondary: "#ffa660",
+    accent: "#c0c0c0",
     error: "#a04b4b",
-    info: '#d0d0d0',
-    success: '#d0d0d0',
-    warning: '#d0d0d0'
+    info: "#d0d0d0",
+    success: "#d0d0d0",
+    warning: "#d0d0d0"
   }
 });
 
