@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
+import URL from "../services/api/apiService.js";
+import router from "./router.js";
 
 Vue.use(Vuex);
 
@@ -8,7 +11,8 @@ export default new Vuex.Store({
     isLoggedIn: !!localStorage.getItem("token"),
     token: localStorage.getItem("token"),
     user: localStorage.getItem("user"),
-    userName: localStorage.getItem("userName")
+    userName: localStorage.getItem("userName"),
+    errors: {}
   },
   mutations: {
     LOGIN(state, payload) {
@@ -22,14 +26,30 @@ export default new Vuex.Store({
       state.token = "";
       state.user = "";
       state.userName = "";
+    },
+    ERRORS(state, payload) {
+      state.errors = payload;
+    },
+    CLEAR_ERRORS(state) {
+      state.errors = {};
     }
   },
   actions: {
     login({ commit }, payload) {
-      localStorage.setItem("token", payload.token);
-      localStorage.setItem("user", payload.user);
-      localStorage.setItem("userName", payload.name);
-      commit("LOGIN", payload);
+      // make the axios request and commit mutation upon success
+      axios
+        .post(URL + "/api/user/login", payload)
+        .then(response => {
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("user", response.data.user);
+          localStorage.setItem("userName", response.data.name);
+          commit("LOGIN", response.data);
+          commit("CLEAR_ERRORS");
+          router.push("/");
+        })
+        .catch(error => {
+          commit("ERRORS", error.response.data);
+        });
     },
     logout({ commit }, payload) {
       localStorage.clear();

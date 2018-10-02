@@ -18,7 +18,7 @@ router.get('/history/:id', verifyToken, (req, res) => {
             User.findById({_id: req.params.id})
             .then(user => {
                 if(user.history.length == 0) {
-                    errors.history = "There are movies in your history!";
+                    errors.history = "There are no movies in your history!";
                     return res.status(404).json(errors);
                 }
                 res.json(user.history);
