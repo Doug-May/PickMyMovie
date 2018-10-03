@@ -1,8 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import URL from "../services/api/apiService.js";
+import URL from "../services/api/backend.js";
 import router from "./router.js";
+import swal from "sweetalert2";
 
 Vue.use(Vuex);
 
@@ -45,6 +46,16 @@ export default new Vuex.Store({
           localStorage.setItem("userName", response.data.name);
           commit("LOGIN", response.data);
           commit("CLEAR_ERRORS");
+          swal({
+            toast: true,
+            position: "bottom",
+            showConfirmButton: false,
+            timer: 3000,
+            type: "success",
+            title: "SUCCESSFULLY LOGGED IN!",
+            customClass: "alert",
+            background: "#353331"
+          });
           router.push("/");
         })
         .catch(error => {
@@ -54,6 +65,37 @@ export default new Vuex.Store({
     logout({ commit }, payload) {
       localStorage.clear();
       commit("LOGOUT", payload);
+      swal({
+        toast: true,
+        position: "bottom",
+        showConfirmButton: false,
+        timer: 3000,
+        type: "success",
+        title: "SUCCESSFULLY LOGGED OUT!",
+        customClass: "alert",
+        background: "#353331"
+      });
+    },
+    register({ commit }, payload) {
+      axios
+        .post(URL + "/api/user/register", payload)
+        .then(() => {
+          //Alert that user was successfully created and redirect to Login
+          swal({
+            toast: true,
+            position: "bottom",
+            showConfirmButton: false,
+            timer: 3000,
+            type: "success",
+            title: "SUCCESSFULLY REGISTERED!",
+            customClass: "alert",
+            background: "#353331"
+          });
+          router.push("/login");
+        })
+        .catch(error => {
+          commit("ERRORS", error.response.data);
+        });
     }
   }
 });

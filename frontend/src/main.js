@@ -3,6 +3,7 @@ import Vuetify from "vuetify";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import swal from "sweetalert2";
 
 Vue.config.productionTip = false;
 
@@ -23,3 +24,9 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount("#app");
+
+//clear errors before each navigation
+router.beforeEach((to, from, next) => {
+  store.commit("CLEAR_ERRORS");
+  next();
+});

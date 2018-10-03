@@ -1,16 +1,16 @@
 <template>
     <div>
-        <h1>Login</h1>
-        <login-comp/>        
+        <h1>Register</h1>
+        <register-comp/>
     </div>
 </template>
 
 <script>
-import LoginComp from "@/components/LoginComp.vue";
+import RegisterComp from "@/components/RegisterComp.vue";
 export default {
-  name: "login",
+  name: "registration",
   components: {
-    LoginComp
+    RegisterComp
   }
 };
 </script>

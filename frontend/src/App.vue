@@ -39,6 +39,12 @@ p {
   font-size: 16px;
 }
 
+.alert {
+  font-family: "Bai Jamjuree", sans-serif !important;
+  box-shadow: none !important;
+  color: #ffa660 !important;
+}
+
 .router-anim-enter-active {
   animation: coming 700ms;
   opacity: 0;
@@ -51,13 +57,13 @@ p {
     transform: translateX(0);
   }
   to {
-    transform: translateX(25px);
+    transform: translateX(15px);
     opacity: 0;
   }
 }
 @keyframes coming {
   from {
-    transform: translateX(-25px);
+    transform: translateX(-15px);
     opacity: 0;
   }
   to {

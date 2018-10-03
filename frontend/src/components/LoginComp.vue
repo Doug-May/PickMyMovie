@@ -1,5 +1,6 @@
 <template>
-<v-form ref="form" lazy-validation class="loginBox">
+  <div>
+    <v-form ref="form" lazy-validation class="loginBox">
     <v-text-field
       @keyup.enter="login"
       v-if="$store.state.errors.email"   
@@ -54,6 +55,8 @@
     submit
     </v-btn>
   </v-form>
+  <p>Don't have an account? Click <span id="redirect" @click="$router.push('/register')">here</span> to create one</p>
+  </div>
 </template>
 
 <script>
@@ -84,11 +87,29 @@ export default {
   background-color: #f4f4f4;
   padding: 30px;
   border-radius: 10px;
+  max-width: 700px;
+  margin: auto;
 }
 
 #submitButton {
   margin: 0 auto;
   width: 45%;
   color: black;
+}
+
+#redirect {
+  transition: 200ms;
+  color: #ffa660;
+  cursor: pointer;
+}
+
+#redirect:hover {
+  transition: 200ms;
+  opacity: 0.4;
+}
+
+p {
+  text-align: center;
+  margin-top: 30px;
 }
 </style>
